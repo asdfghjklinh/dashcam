@@ -66,5 +66,19 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+    <!-- Cấp quyền Camera cho Dashcam -->
+    <key>NSCameraUsageDescription</key>
+    <string>Ứng dụng cần truy cập Camera để ghi hình hành trình và nhận diện khoảng cách xe phía trước.</string>
+
+    <!-- Cấp quyền Microphone cho Video -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Ứng dụng cần truy cập Micro để thu âm thanh video hành trình.</string>
+
+    <!-- Cấp quyền GPS -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Ứng dụng cần GPS để tính tốc độ xe và khoảng cách di chuyển.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Ứng dụng cần GPS để theo dõi hành trình ngay cả khi ứng dụng chạy nền.</string>
 </dict>
 </plist>
