@@ -5,6 +5,7 @@ import 'package:dashcam/features/settings/presentation/controllers/settings_cont
 import 'package:dashcam/features/dashcam/presentation/controllers/dashcam_controller.dart';
 import 'package:dashcam/features/dashcam/presentation/views/dashcam_screen.dart';
 import 'package:dashcam/features/settings/presentation/views/settings_screen.dart';
+import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,6 +15,14 @@ void main() async {
 
   // 2. Truyền dataSource vào constructor của SettingsController
   final settingsController = SettingsController(settingsLocalDataSource);
+
+  // 3. ÉP NATIVE KHỞI TẠO CHANNEL SỰ KIỆN (Tránh lỗi MissingPluginException)
+  try {
+    await FFmpegKitConfig.init();
+    debugPrint("FFmpegKit Native Channel đã kết nối thành công!");
+  } catch (e) {
+    debugPrint("Lỗi khởi tạo FFmpegKit Config: $e");
+  }
 
   runApp(
     MultiProvider(

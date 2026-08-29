@@ -8,9 +8,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- Quyền ghi âm thanh (nếu muốn quay video có tiếng) & Bộ nhớ -->
+    <!-- Quyền ghi âm thanh (nếu muốn quay video có tiếng) -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Cấp quyền lưu vào Bộ nhớ Ảnh: Android <= 9 (API 28) -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+
+    <!-- Cấp quyền lưu vào Bộ nhớ Ảnh: Android 13+ (API 33+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
     <application
         android:label="dashcam"

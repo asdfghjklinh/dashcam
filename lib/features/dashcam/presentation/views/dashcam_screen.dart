@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:dashcam/features/dashcam/presentation/controllers/dashcam_controller.dart';
 import 'package:dashcam/features/dashcam/presentation/widgets/camera_preview_widget.dart';
-import 'package:dashcam/features/dashcam/presentation/widgets/distance_overlay_widget.dart';
-import 'package:dashcam/features/dashcam/presentation/widgets/speed_hud_widget.dart';
+import 'package:dashcam/features/dashcam/presentation/widgets/dashcam_overlay_widget.dart';
+import 'package:dashcam/features/dashcam/presentation/views/video_player_screen.dart';
 
 class DashcamScreen extends StatelessWidget {
   const DashcamScreen({super.key});
@@ -12,87 +12,99 @@ class DashcamScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dashcamController = context.watch<DashcamController>();
-
     final orientation = MediaQuery.of(context).orientation;
     final isPortrait = orientation == Orientation.portrait;
 
     return Scaffold(
       backgroundColor: Colors.black,
       body: !dashcamController.isInitialized
-          ? const Center(
-        child: CircularProgressIndicator(color: Colors.redAccent),
-      )
+          ? const Center(child: CircularProgressIndicator(color: Colors.redAccent))
           : Stack(
         children: [
-          // 1. Camera Preview Tràn Màn Hình Tỉ Lệ Chuẩn (Giống iOS Camera)
-          const Positioned.fill(
-            child: CameraPreviewWidget(),
-          ),
+          // 1. Live Preview Camera
+          const Positioned.fill(child: CameraPreviewWidget()),
 
-          // 2. Overlays Nhận diện Bounding Box AI
-          if (dashcamController.showDistanceOverlay)
-            const Positioned.fill(
-              child: DistanceOverlayWidget(),
-            ),
-
-          // 3. Nút Cài Đặt (Top Right)
-          Positioned(
-            top: 45,
-            right: 16,
-            child: SafeArea(
-              child: IconButton(
-                icon: const Icon(Icons.settings, color: Colors.white, size: 28),
-                onPressed: () {
-                  Navigator.pushNamed(context, '/settings');
-                },
-              ),
-            ),
-          ),
-
-          // 4. HUD Tốc độ & Quãng đường
-          Positioned(
-            bottom: isPortrait ? 120 : 20,
-            left: 16,
-            right: isPortrait ? 16 : null,
-            child: SpeedHudWidget(
+          // 2. Dashcam Overlay DashCam_ADAS REALTIME (Cập nhật liên tục từ Controller)
+          Positioned.fill(
+            child: DashcamOverlayWidget(
               speedKmH: dashcamController.currentSpeedKmH,
-              totalDistanceM: dashcamController.totalDistanceM,
+              latitude: dashcamController.lastPosition?.latitude ?? 21.028,
+              longitude: dashcamController.lastPosition?.longitude ?? 105.834,
+              currentDateTime: dashcamController.currentDateTime, // Realtime
               isPortrait: isPortrait,
             ),
           ),
 
-          // 5. Nút Bắt đầu / Dừng Ghi hình
+          // 3. Nút Xem Video Đã Quay
+          if (dashcamController.lastRecordedVideoPath != null)
+            Positioned(
+              top: 40,
+              right: 20,
+              child: FloatingActionButton.small(
+                heroTag: "btn_play",
+                backgroundColor: Colors.black54,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VideoPlayerScreen(
+                        videoPath: dashcamController.lastRecordedVideoPath!,
+                      ),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.play_circle_fill, color: Colors.white, size: 28),
+              ),
+            ),
+
+          // 4. Nút Bắt đầu / Dừng Quay
           Positioned(
-            bottom: isPortrait ? 40 : 20,
-            right: isPortrait ? null : 30,
-            left: isPortrait ? 0 : null,
-            child: isPortrait
-                ? Center(child: _buildRecordButton(context, dashcamController, isPortrait))
-                : _buildRecordButton(context, dashcamController, isPortrait),
+            bottom: isPortrait ? 120 : 20,
+            right: isPortrait ? 20 : 30,
+            child: FloatingActionButton(
+              heroTag: "btn_record",
+              backgroundColor: dashcamController.isRecording ? Colors.red : Colors.white,
+              onPressed: () async {
+                if (dashcamController.isRecording) {
+                  final savedPath = await dashcamController.stopRecording();
+                  if (savedPath != null && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Đã lưu video vào Album hệ thống!')),
+                    );
+                  }
+                } else {
+                  await dashcamController.startRecording(
+                    isPortrait ? DeviceOrientation.portraitUp : DeviceOrientation.landscapeLeft,
+                    isPortrait,
+                  );
+                }
+              },
+              child: Icon(
+                dashcamController.isRecording ? Icons.stop : Icons.videocam,
+                color: dashcamController.isRecording ? Colors.white : Colors.red,
+              ),
+            ),
           ),
+
+          // 5. Màn hình chờ Render Video
+          if (dashcamController.isRenderingVideo)
+            Container(
+              color: Colors.black87,
+              child: const Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CircularProgressIndicator(color: Colors.greenAccent),
+                    SizedBox(height: 16),
+                    Text(
+                      'Đang đóng dấu thông số DashCam_ADAS và lưu vào Gallery...',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
+            ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildRecordButton(
-      BuildContext context, DashcamController dashcamController, bool isPortrait) {
-    return FloatingActionButton(
-      backgroundColor: dashcamController.isRecording ? Colors.red : Colors.white,
-      onPressed: () async {
-        if (dashcamController.isRecording) {
-          await dashcamController.stopRecording();
-        } else {
-          DeviceOrientation recordOrientation = isPortrait
-              ? DeviceOrientation.portraitUp
-              : DeviceOrientation.landscapeLeft;
-
-          await dashcamController.startRecording(recordOrientation);
-        }
-      },
-      child: Icon(
-        dashcamController.isRecording ? Icons.stop : Icons.videocam,
-        color: dashcamController.isRecording ? Colors.white : Colors.red,
       ),
     );
   }

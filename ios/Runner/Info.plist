@@ -80,5 +80,11 @@
     <string>Ứng dụng cần GPS để tính tốc độ xe và khoảng cách di chuyển.</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
     <string>Ứng dụng cần GPS để theo dõi hành trình ngay cả khi ứng dụng chạy nền.</string>
+
+    <!-- Cấp quyền lưu vào Bộ nhớ Ảnh -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Ứng dụng cần quyền truy cập Thư viện ảnh để lưu video Dashcam.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Ứng dụng cần quyền lưu video Dashcam vào Thư viện ảnh.</string>
 </dict>
 </plist>

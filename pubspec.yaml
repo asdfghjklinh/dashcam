@@ -42,14 +42,20 @@ dependencies:
   google_mlkit_object_detection: ^0.17.1
   # 5. Đọc file Model TFLite từ bộ nhớ (Phụ trợ cho ML Kit Custom Model)
   path_provider: ^2.1.6
-  # 5. Xử lý ảnh & Toán học (Biến đổi khung hình)
-  #image: ^4.9.2
   # 6. Phát Âm thanh Cảnh báo (Còi báo động khi sát xe)
   audioplayers: ^6.8.1
   # 7. Lưu trữ Cấu hình local (Cài đặt ngưỡng cảnh báo)
   shared_preferences: ^2.5.5
   # 8. State Management
   provider: ^6.1.5+1
+  # 9. Thư viện xử lý render video bằng FFmpeg
+  ffmpeg_kit_flutter_new: ^4.6.2
+  # 10.
+  intl: ^0.20.3
+  # 11. Lưu file đã đóng dấu vào Album/Gallery hệ thống
+  gal: ^2.3.3
+  # 12. Mở xem trực tiếp video MP4 trong app
+  video_player: ^2.14.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
