@@ -11,7 +11,7 @@ class CameraNativeManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelegat
     private var textureId: Int64 = -1
     
     private var currentPixelBuffer: CVPixelBuffer?
-    private let visionDetector = CoreMLVisionDetector()
+    private let visionDetector = TFLiteDetector()
     private let videoEncoder = MetalVideoEncoder()
     private let overlayRenderer = TelemetryOverlayRenderer()
     

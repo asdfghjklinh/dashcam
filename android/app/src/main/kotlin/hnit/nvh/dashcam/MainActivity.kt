@@ -1,4 +1,4 @@
-package com.app.mycamapp
+package com.app.dashcam
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -6,7 +6,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.view.TextureRegistry
 
 class MainActivity: FlutterActivity() {
-    private val CHANNEL = "com.app.mycamapp/recorder"
+    private val CHANNEL = "com.app.dashcam/recorder"
 
     private var textureEntry: TextureRegistry.SurfaceTextureEntry? = null
     private var isRecording = false

@@ -23,7 +23,7 @@ import Flutter
 
 // 🟢 Tách riêng Plugin Handler để tránh xung đột Protocol với AppDelegate
 class DashcamRecorderPlugin: NSObject, FlutterPlugin {
-    private static let CHANNEL = "com.app.mycamapp/recorder"
+    private static let CHANNEL = "com.app.dashcam/recorder"
     private var cameraManager: CameraNativeManager?
 
     init(registrar: FlutterPluginRegistrar) {

@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 class DashcamNativeController {
   static const MethodChannel _channel =
-  MethodChannel('com.app.mycamapp/recorder');
+  MethodChannel('com.app.dashcam/recorder');
 
   int? textureId;
 
