@@ -1,5 +1,5 @@
 name: dashcam
-description: "A new Flutter project."
+description: "AI Dashcam App with Real-time GPU Overlay & Distance Estimation."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -31,30 +31,20 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # 1. Camera & Luồng Video
-  camera: ^0.12.0+2
-  # 2. Định vị GPS & Tính khoảng cách di chuyển
+  # 1. Định vị GPS & Vận tốc real-time
   geolocator: ^14.0.3
-  # 3. Quản lý Quyền (Camera, Location, Storage)
+  # 2. Quản lý Quyền (Camera, Location, Storage)
   permission_handler: ^13.0.1
-  # 4. Engine AI On-Device phát hiện Bounding Box (Xe/Người)
-  # Đã hỗ trợ sẵn Java 17+, không bị lỗi JVM Target
-  google_mlkit_object_detection: ^0.17.1
-  # 5. Đọc file Model TFLite từ bộ nhớ (Phụ trợ cho ML Kit Custom Model)
-  path_provider: ^2.1.6
-  # 6. Phát Âm thanh Cảnh báo (Còi báo động khi sát xe)
+  # 3. Phát Âm thanh Cảnh báo (Còi báo động ADAS khi khoảng cách quá gần)
   audioplayers: ^6.8.1
-  # 7. Lưu trữ Cấu hình local (Cài đặt ngưỡng cảnh báo)
-  shared_preferences: ^2.5.5
-  # 8. State Management
+  # 4. Quản lý Đường dẫn Lưu trữ File MP4
+  path_provider: ^2.1.6
+  # 5. Quản lý Trạng thái & Cấu hình App
   provider: ^6.1.5+1
-  # 9. Thư viện xử lý render video bằng FFmpeg
-  ffmpeg_kit_flutter_new: ^4.6.2
-  # 10.
+  shared_preferences: ^2.5.5
+  # 6. Format Ngày giờ & Tiện ích
   intl: ^0.20.3
-  # 11. Lưu file đã đóng dấu vào Album/Gallery hệ thống
-  gal: ^2.3.3
-  # 12. Mở xem trực tiếp video MP4 trong app
+  # 7. Mở xem trực tiếp Video MP4 đã quay trong app
   video_player: ^2.14.0
 
   # The following adds the Cupertino Icons font to your application.
@@ -88,7 +78,6 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
     - assets/models/
-    - assets/labels.txt
     - assets/sounds/
 
   # An image asset can refer to one or more resolution-specific "variants", see

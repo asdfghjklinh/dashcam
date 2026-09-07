@@ -1,33 +1,30 @@
-# 1. Tạo các thư mục cấu trúc theo Clean Architecture
-mkdir -p assets/models assets/sounds assets/icons
-mkdir -p lib/core/constants lib/core/utils lib/core/services
-mkdir -p lib/features/dashcam/data/models lib/features/dashcam/data/datasources
-mkdir -p lib/features/dashcam/presentation/controllers lib/features/dashcam/presentation/views lib/features/dashcam/presentation/widgets
-mkdir -p lib/features/trip_history/data/models lib/features/trip_history/data/datasources
-mkdir -p lib/features/trip_history/presentation/controllers lib/features/trip_history/presentation/views lib/features/trip_history/presentation/widgets
-mkdir -p lib/features/settings/presentation/views lib/features/settings/presentation/widgets
+# 1. Tạo thư mục Assets
+mkdir -p assets/models assets/sounds
+mkdir -p android/app/src/main/assets
 
-# 2. Tạo các file cho module Core
-touch lib/core/constants/app_colors.dart
-touch lib/core/constants/distance_thresholds.dart
-touch lib/core/utils/distance_calculator.dart
-touch lib/core/utils/kalman_filter.dart
-touch lib/core/utils/image_converter.dart
-touch lib/core/services/audio_service.dart
-touch lib/core/services/gps_service.dart
+# 2. Tạo các thư mục Dart ở tầng Flutter (lib)
+mkdir -p lib/controllers lib/providers lib/screens lib/services
 
-# 3. Tạo các file cho Feature Dashcam & AI
-touch lib/features/dashcam/data/models/detection_result.dart
-touch lib/features/dashcam/data/models/vehicle_distance.dart
-touch lib/features/dashcam/data/datasources/tflite_service.dart
-touch lib/features/dashcam/presentation/controllers/dashcam_controller.dart
-touch lib/features/dashcam/presentation/views/dashcam_screen.dart
-touch lib/features/dashcam/presentation/widgets/camera_preview_widget.dart
-touch lib/features/dashcam/presentation/widgets/distance_overlay_widget.dart
-touch lib/features/dashcam/presentation/widgets/speed_hud_widget.dart
+# 3. Tạo các file Dart cần thiết
+touch lib/controllers/dashcam_native_controller.dart
+touch lib/providers/gps_provider.dart
+touch lib/providers/settings_provider.dart
+touch lib/screens/camera_preview_screen.dart
+touch lib/screens/video_gallery_screen.dart
+touch lib/screens/video_player_screen.dart
+touch lib/services/audio_alert_service.dart
 
-# 4. Tạo các file cho Feature Trip History
-touch lib/features/trip_history/presentation/views/history_screen.dart
+# 4. Tạo thư mục và file Native Android (Kotlin)
+# (Lưu ý: Thay 'com/example/dashcam_app' bằng package_name tương ứng của bạn nếu khác)
+PACKAGE_DIR="android/app/src/main/kotlin/hnit/nvh/dashcam"
+mkdir -p $PACKAGE_DIR/camera $PACKAGE_DIR/gpu
 
-# 5. Tạo các file cho Feature Settings
-touch lib/features/settings/presentation/views/settings_screen.dart
+touch $PACKAGE_DIR/camera/CameraNativeManager.kt
+touch $PACKAGE_DIR/camera/MediaPipeDetector.kt
+touch $PACKAGE_DIR/gpu/GpuVideoEncoder.kt
+touch $PACKAGE_DIR/gpu/OpenGLRenderer.kt
+
+# 5. Tạo các file Native iOS (Swift)
+touch ios/Runner/CameraNativeManager.swift
+touch ios/Runner/CoreMLVisionDetector.swift
+touch ios/Runner/MetalVideoEncoder.swift

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "hnit.nvh.dashcam"
+    namespace = "com.app.mycamapp"
     compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
@@ -16,7 +16,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "hnit.nvh.dashcam"
+        applicationId = "com.app.mycamapp"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -48,4 +48,17 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // MediaPipe Tasks Vision cho AI Detection
+    // implementation 'com.google.mediapipe:tasks-vision:0.10.14'
+    implementation("com.google.mediapipe:tasks-vision:latest.release")
+
+    // CameraX để quản lý camera native
+    // def camerax_version = "1.3.4"
+    val cameraxVersion = "1.6.2"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
 }
