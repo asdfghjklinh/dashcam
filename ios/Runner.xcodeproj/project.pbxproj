@@ -19,7 +19,6 @@
 		EBBDCAA5304AC2B900CD7955 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBDCAA4304AC2B900CD7955 /* SceneDelegate.swift */; };
 		EBBDCAA7304AC35B00CD7955 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBDCAA6304AC35B00CD7955 /* AppDelegate.swift */; };
 		EBC95E9830489B5900437BC1 /* MetalVideoEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC95E9730489B5900437BC1 /* MetalVideoEncoder.swift */; };
-		EBC95E9930489B5900437BC1 /* CoreMLVisionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC95E9630489B5900437BC1 /* CoreMLVisionDetector.swift */; };
 		EBC95E9A30489B5900437BC1 /* CameraNativeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC95E9530489B5900437BC1 /* CameraNativeManager.swift */; };
 		EBE0EA4C304DCC9200A33E93 /* efficientdet_lite0.tflite in Resources */ = {isa = PBXBuildFile; fileRef = EBE0EA4B304DCC9200A33E93 /* efficientdet_lite0.tflite */; };
 		EBE0EA4E304DCE9000A33E93 /* TFLiteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0EA4D304DCE9000A33E93 /* TFLiteDetector.swift */; };
@@ -75,7 +74,6 @@
 		EBBDCAA4304AC2B900CD7955 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EBBDCAA6304AC35B00CD7955 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC95E9530489B5900437BC1 /* CameraNativeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraNativeManager.swift; sourceTree = "<group>"; };
-		EBC95E9630489B5900437BC1 /* CoreMLVisionDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLVisionDetector.swift; sourceTree = "<group>"; };
 		EBC95E9730489B5900437BC1 /* MetalVideoEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalVideoEncoder.swift; sourceTree = "<group>"; };
 		EBE0EA4B304DCC9200A33E93 /* efficientdet_lite0.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; path = efficientdet_lite0.tflite; sourceTree = "<group>"; };
 		EBE0EA4D304DCE9000A33E93 /* TFLiteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFLiteDetector.swift; sourceTree = "<group>"; };
@@ -172,7 +170,6 @@
 				EBBDCAA6304AC35B00CD7955 /* AppDelegate.swift */,
 				EBC95E9530489B5900437BC1 /* CameraNativeManager.swift */,
 				EBE0EA4F304EAD0400A33E93 /* TelemetryOverlayRenderer.swift */,
-				EBC95E9630489B5900437BC1 /* CoreMLVisionDetector.swift */,
 				EBE0EA4D304DCE9000A33E93 /* TFLiteDetector.swift */,
 				EBC95E9730489B5900437BC1 /* MetalVideoEncoder.swift */,
 				EBBDCAA4304AC2B900CD7955 /* SceneDelegate.swift */,
@@ -411,7 +408,6 @@
 				EBBDCAA7304AC35B00CD7955 /* AppDelegate.swift in Sources */,
 				EBBDCAA5304AC2B900CD7955 /* SceneDelegate.swift in Sources */,
 				EBC95E9830489B5900437BC1 /* MetalVideoEncoder.swift in Sources */,
-				EBC95E9930489B5900437BC1 /* CoreMLVisionDetector.swift in Sources */,
 				EBE0EA4E304DCE9000A33E93 /* TFLiteDetector.swift in Sources */,
 				EBE0EA50304EAD0E00A33E93 /* TelemetryOverlayRenderer.swift in Sources */,
 				EBC95E9A30489B5900437BC1 /* CameraNativeManager.swift in Sources */,

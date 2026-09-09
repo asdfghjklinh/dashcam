@@ -18,13 +18,16 @@ samples, guidance on mobile development, and a full API reference.
 
 ```
 dashcam_app/
+├── assets/
+│   ├── models/
+│   └── sounds/
 ├── android/
 │   └── app/
 │       └── src/
 │           └── main/
 │               ├── assets/
 │               │   └── efficientdet_lite0.tflite
-│               └── kotlin/com/example/dashcam_app/
+│               └── kotlin/com/app/dashcam/
 │                   ├── MainActivity.kt
 │                   ├── camera/
 │                   │   ├── CameraNativeManager.kt
@@ -36,24 +39,39 @@ dashcam_app/
 │   └── Runner/
 │       ├── AppDelegate.swift
 │       ├── CameraNativeManager.swift
-│       ├── CoreMLVisionDetector.swift
-│       └── MetalVideoEncoder.swift
+│       ├── MetalVideoEncoder.swift
+│       ├── SceneDelegate.swift
+│       ├── TFLiteDetector.swift
+│       ├── TelemetryOverlayRenderer.swift
+│       └── efficientdet_lite0.tflite
+│
 ├── lib/
 │   ├── main.dart
+│   ├── core/
+│   │   ├── constants/                  # App constants, UI colors, Theme
+│   │   ├── services/
+│   │   │   ├── service_ad.dart         # Quản lý 4 loại Ads (Open App, Banner, Interstitial, Rewarded)
+│   │   │   ├── service_iap.dart        # Quản lý In-App Purchase / Premium status
+│   │   │   └── service_audio.dart      # Cảnh báo âm thanh (Audio alert)
+│   │   └── utils/
 │   ├── controllers/
-│   │   └── dashcam_native_controller.dart
+│   │   └── controller_dashcam_native.dart      # Điều khiển GPU/Native render
 │   ├── providers/
-│   │   ├── gps_provider.dart
-│   │   └── settings_provider.dart
+│   │   ├── provider_ad.dart            # Trạng thái ẩn/hiện Ads dựa trên Premium
+│   │   ├── provider_gps.dart           # Cập nhật tọa độ, tốc độ
+│   │   └── provider_settings.dart      # Lưu cấu hình quay (Dọc/Ngang), Resolution...
 │   ├── screens/
-│   │   ├── camera_preview_screen.dart
-│   │   ├── video_gallery_screen.dart
-│   │   └── video_player_screen.dart
-│   └── services/
-│       └── audio_alert_service.dart
-└── assets/
-    ├── models/
-    └── sounds/
+│   │   ├── screen_main_tab.dart        # Bottom Tabbar (Home, Premium, Settings)
+│   │   ├── screen_dashcam_home.dart    # Màn hình chính (Preview + Video Album)
+│   │   ├── screen_fullscreen.dart      # Màn hình xem Fullscreen (Quay Ngang hoặc Dọc)
+│   │   ├── screen_video_gallery.dart   # Màn hình Album danh sách video
+│   │   ├── screen_video_player.dart    # Màn hình xem lại video đã quay
+│   │   ├── screen_premium.dart         # Màn hình mua gói Premium (IAP)
+│   │   └── screen_settings.dart        # Màn hình cài đặt app
+│   └── widgets/
+│       ├── widget_camera_preview.dart  # Frame preview (Ngang/Dọc) hiển thị ở Home
+│       ├── widget_video_album.dart     # Widget hiển thị danh sách video theo ngày
+│       └── widget_banner_ad.dart       # Widget Banner Ad tái sử dụng nhiều nơi
 ```
 
 

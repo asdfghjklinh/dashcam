@@ -1,8 +1,7 @@
 import 'package:flutter/services.dart';
 
 class DashcamNativeController {
-  static const MethodChannel _channel =
-  MethodChannel('com.app.dashcam/recorder');
+  static const MethodChannel _channel = MethodChannel('com.app.dashcam/recorder');
 
   int? textureId;
 
@@ -15,18 +14,6 @@ class DashcamNativeController {
       print("Lỗi khởi tạo Native Dashcam: ${e.message}");
       return null;
     }
-  }
-
-  /// 🟢 Native iOS (CLLocationManager & Timer) đã tự động cập nhật
-  /// Tốc độ, Tọa độ GPS và Thời gian real-time.
-  /// Hàm này giữ lại dạng rỗng (no-op) để không gây lỗi nếu có Widget khác lỡ gọi tới.
-  Future<void> updateTelemetry({
-    required double speed,
-    required double latitude,
-    required double longitude,
-  }) async {
-    // Không gửi invokeMethod nữa vì Native tự xử lý 100%
-    return;
   }
 
   /// Bắt đầu ghi hình GPU Real-time trực tiếp ra file MP4
@@ -42,7 +29,7 @@ class DashcamNativeController {
     }
   }
 
-  /// Dừng ghi hình (File mp4 hoàn chỉnh ngay lập tức)
+  /// Dừng ghi hình (File MP4 hoàn chỉnh ngay lập tức)
   Future<bool> stopRecording() async {
     try {
       final bool? success = await _channel.invokeMethod('stopRecording');
